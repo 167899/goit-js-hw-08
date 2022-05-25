@@ -20,16 +20,16 @@ form.addEventListener(
 );
 
 setStorageObj = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
-console.dir(form.elements);
 form.elements.email.value = setStorageObj.email || '';
 form.elements.message.value = setStorageObj.massage || '';
 
 form.addEventListener('submit', e => {
+  e.preventDefault();
   if (form.elements.email.value === '' || form.elements.message.value === '') {
     alert('Все поля должны быть заполнены!');
   } else {
-    e.preventDefault();
     form.reset();
     localStorage.removeItem('feedback-form-state');
+    console.log(setStorageObj);
   }
 });
